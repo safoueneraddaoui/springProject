@@ -40,6 +40,7 @@ public class CompteController {
 		model.addAttribute("comptes", compteService.getAll());
 		return "comptes";
 	}
+
 	@GetMapping("/add")
 	public String add(Model model) {
 		model.addAttribute("clients", clientService.getAll());
@@ -64,6 +65,7 @@ public class CompteController {
 
 	@ResponseBody
 	@GetMapping("/delete-ajax")
+
 	public void deleteajax(@RequestParam(value = "rib" , required = true) Long rib) {
 		compteService.delete(rib);
 	}
@@ -76,10 +78,5 @@ public class CompteController {
 		return "edit-compte";
 	}
 
-	@PostMapping("/update_data")
-	public String update_data(@ModelAttribute Compte compte){
 
-		compteService.update(compte);
-		return "redirect:/compte/all";
-	}
 }

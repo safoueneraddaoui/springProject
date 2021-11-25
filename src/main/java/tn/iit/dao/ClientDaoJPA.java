@@ -19,13 +19,9 @@ public class ClientDaoJPA {
 		em.persist(client);
 	}
 
-	// sa or 1=1--
 	public List<Client> getAll() {
 		return em.createNamedQuery("all-client", Client.class).getResultList();
 	}
-	/*public int getCount() {
-		return em.createNamedQuery("count-client", Client.class).getFirstResult();
-	}*/
 
 	public Client findById(String cin) {
 		return em.find(Client.class, cin);

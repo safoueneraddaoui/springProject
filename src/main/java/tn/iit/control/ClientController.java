@@ -47,12 +47,6 @@ public class ClientController {
         return "redirect:/client/all";
     }
 
-    @GetMapping("/show/{cin}")
-    public String show(@PathVariable(value = "cin") String cin, Model model) {
-        model.addAttribute("client", clientService.findById(cin));
-        return "show-client";
-    }
-
     @ResponseBody
     @GetMapping("/delete-ajax")
     public void deleteajax(@RequestParam(value = "cin", required = true) String cin) {
@@ -66,10 +60,4 @@ public class ClientController {
         return "edit-client";
     }
 
-    @PostMapping("/update_data")
-    public String update_data(@ModelAttribute Client client) {
-
-        clientService.update(client);
-        return "redirect:/client/all";
-    }
 }
