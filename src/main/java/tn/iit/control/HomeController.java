@@ -27,16 +27,8 @@ public class HomeController {
 
     @GetMapping("/")
     public String getAll(Model model) {
-        /*model.addAttribute("countclient", clientService.getCount());
-        model.addAttribute("countcompte", compteService.getCount());
-        model.addAttribute("summoney", compteService.getSum());
-        model.addAttribute("topmoney", compteService.getTop());*/
+
         return "index";
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-        SecurityContextHolder.getContext().setAuthentication(null);
-        return "redirect:/login";
-    }
 }

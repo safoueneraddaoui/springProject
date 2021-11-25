@@ -90,21 +90,24 @@
 						<div class="card-body">
 							<form th:action="@{/compte/save}" method="POST">
 								<div class="form-group row">
+									<label class="col-12 col-sm-3 col-form-label text-sm-right">CIN</label>
+									<div class="col-12 col-sm-8 col-lg-6">
+										<select class="form-control" th:name="cin" id="input-select">
+											<option th:each="client : ${clients}" th:value="${client.cin}" th:text="${client.cin}">Select CIN</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group row">
 									<label class="col-12 col-sm-3 col-form-label text-sm-right">RIB</label>
 									<div class="col-12 col-sm-8 col-lg-6">
-										<input type="number" th:name="cin" placeholder="Type your CIN" class="form-control" required>
+										<input type="text" th:name="rib"  placeholder="Put your First Name - Min 6 chars." class="form-control" required>
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-12 col-sm-3 col-form-label text-sm-right">First Name</label>
+									<label class="col-12 col-sm-3 col-form-label text-sm-right">Sold</label>
 									<div class="col-12 col-sm-8 col-lg-6">
-										<input type="text" th:name="solde"  placeholder="Put your First Name - Min 6 chars." class="form-control" required>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-12 col-sm-3 col-form-label text-sm-right">Last Name Length</label>
-									<div class="col-12 col-sm-8 col-lg-6">
-										<input type="text" th:rib="rib" placeholder="Put your Last Name - Min 6 chars." class="form-control" required>
+										<input type="text" th:name="solde" placeholder="Put your Last Name - Min 6 chars." class="form-control" required>
 									</div>
 								</div>
 								<div class="form-group row text-right">
