@@ -1,179 +1,157 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html lang="en">
 
 <head>
-<meta charset="utf-8">
-<!-- CSS only -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<title>Compte</title>
-<meta name="description" content="Basic">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
-<!-- Call App Mode on ios devices -->
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<!-- Remove Tap Highlight on Windows Phone IE -->
-<meta name="msapplication-tap-highlight" content="no">
-<!-- base css -->
-<link rel="stylesheet" media="screen, print"
-	href="../css/vendors.bundle.css">
-<link rel="stylesheet" media="screen, print"
-	href="../css/app.bundle.css">
-<!-- Place favicon.ico in the root directory -->
-<link rel="apple-touch-icon" sizes="180x180"
-	href="../img/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32"
-	href="../img/favicon/favicon-32x32.png">
-<link rel="mask-icon" href="../img/favicon/safari-pinned-tab.svg"
-	color="#5bbad5">
-<link rel="stylesheet" media="screen, print"
-	href="../css/datagrid/datatables/datatables.bundle.css">
-
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+	<title>Data Tables</title>
+	<!-- Bootstrap CSS -->
+	<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+	<link href="../css/style.css" rel="stylesheet">
+	<link href="../vendor/fonts/fontawesome/css/fontawesome-all.css" rel="stylesheet">
+	<link href="../vendor/datatables/css/dataTables.bootstrap4.css" rel="stylesheet" type="text/css">
+	<link href="../vendor/datatables/css/buttons.bootstrap4.css" rel="stylesheet" type="text/css">
+	<link href="../vendor/datatables/css/select.bootstrap4.css" rel="stylesheet" type="text/css">
+	<link href="../vendor/datatables/css/fixedHeader.bootstrap4.css" rel="stylesheet" type="text/css">
 </head>
-<body class="mod-bg-1 ">
-	<script src="../js/themesett.js"></script>
-	<div class="page-wrapper">
-		<div class="page-inner">
-			<div th:replace="~{/layouts/nav}"></div>
-			<div class="page-content-wrapper">
-				<div th:replace="~{/layouts/pageheader}"></div>
-				<!-- BEGIN Page Content -->
-				<!-- the #js-page-content id is needed for some plugins to initialize -->
-				<main id="js-page-content" role="main" class="page-content">
-					<ol class="breadcrumb page-breadcrumb">
-						<li class="breadcrumb-item"><a th:href="@{/}">Dashboard</a></li>
-						<li class="breadcrumb-item"><a th:href="@{/compte/all}">Compte</a></li>
-						<li class="breadcrumb-item active">List</li>
-						<li class="position-absolute pos-top pos-right d-none d-sm-block"><span
-							class="js-get-date"></span></li>
-					</ol>
 
-					<div class="row">
-						<div class="col-xl-12">
-							<div id="panel-1" class="panel">
-								<div class="panel-hdr">
-									<h2>
-										Compte <span class="fw-300"><i>List</i></span>
-									</h2>
-								</div>
-								<div class="panel-container show">
-									<div class="panel-content">
+<body>
+<!-- ============================================================== -->
+<!-- main wrapper -->
+<!-- ============================================================== -->
+<div class="dashboard-main-wrapper">
+	<!-- ============================================================== -->
+	<!-- navbar -->
+	<!-- ============================================================== -->
+	<div th:replace="~{/layouts/leftsidebar}"></div>
 
-										<!-- datatable start -->
-										<table id="dt-basic-example"
-											class="table table-bordered table-hover table-striped w-100">
-											<thead>
-												<tr>
-													<th>N°</th>
-													<th>Rib</th>
-													<th>Solde</th>
-													<th>Client</th>
-													<th>Edit</th>
-													<th>Delete Ajax</th>
-													<th>Delete</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr th:id="${compte.rib}"
-													th:each="compte,iterStat : ${comptes}">
-													<td><span th:text="${iterStat.count}">1</span></td>
-													<td th:text="${compte.rib}"></td>
-													<td th:text="${compte.solde}"></td>
-													<td > <span th:text="${compte.client.cin}"></span><a th:href="@{'/client/show/'+${compte.client.cin}}" class="btn btn-default btn-sm btn-icon rounded-circle waves-effect waves-themed">
-                                                        <i class="fal fa-eye"></i>
-                                                    </a></td>
+	<!-- ============================================================== -->
+	<!-- end navbar -->
+	<!-- ============================================================== -->
+	<!-- ============================================================== -->
+	<!-- left sidebar -->
+	<!-- ============================================================== -->
+	<div th:replace="~{/layouts/header}"></div>
 
-													<td>
-														<form th:action="@{/compte/update}" method="POST">
-															<input type="hidden" name="rib" th:value="${compte.rib}">
-															<button
-																class="btn btn-warning btn-sm btn-icon rounded-circle waves-effect waves-themed"
-																type="submit">
-																<i class="fal fa-edit"></i>
-															</button>
-														</form>
-													</td>
-													<td><a
-														th:href="|javascript:deleteCompte(${compte.rib})|"
-														class="btn btn-danger btn-sm btn-icon rounded-circle waves-effect waves-themed">
-															<i class="fal fa-times"></i>
-													</a></td>
-													<td><a th:href="@{'/compte/delete/'+${compte.rib}}"
-														class="btn btn-danger btn-sm btn-icon rounded-circle waves-effect waves-themed">
-															<i class="fal fa-times"></i>
-													</a></td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<th>N°</th>
-													<th>Rib</th>
-													<th>Solde</th>
-													<th>Client</th>
-													<th>Edit</th>
-													<th>Delete Ajax</th>
-													<th>Delete</th>
-												</tr>
-											</tfoot>
-										</table>
-										<!-- datatable end -->
-									</div>
-								</div>
+	<!-- ============================================================== -->
+	<!-- end left sidebar -->
+	<!-- ============================================================== -->
+	<!-- ============================================================== -->
+	<!-- wrapper  -->
+	<!-- ============================================================== -->
+	<div class="dashboard-wrapper">
+		<div class="container-fluid  dashboard-content">
+			<!-- ============================================================== -->
+			<!-- pageheader -->
+			<!-- ============================================================== -->
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+					<div class="page-header">
+						<h2 class="pageheader-title">Data Tables</h2>
+						<p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit
+							amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+						<div class="page-breadcrumb">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a class="breadcrumb-link" href="#">Dashboard</a></li>
+									<li class="breadcrumb-item"><a class="breadcrumb-link" href="#">Tables</a></li>
+									<li aria-current="page" class="breadcrumb-item active">Data Tables</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ============================================================== -->
+			<!-- end pageheader -->
+			<!-- ============================================================== -->
+			<div class="row">
+				<!-- ============================================================== -->
+				<!-- basic table  -->
+				<!-- ============================================================== -->
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+					<div class="card">
+						<h5 class="card-header">Basic Table</h5>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-striped table-bordered first">
+									<thead>
+									<tr>
+										<th>N°</th>
+										<th>RIB</th>
+										<th>Sold</th>
+										<th>Client</th>
+										<th>Edit</th>
+										<th>Delete</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr th:each="compte,iterStat : ${comptes}"
+										th:id="${compte.rib}">
+										<td><span th:text="${iterStat.count}">1</span></td>
+										<td th:text="${compte.rib}"></td>
+										<td th:text="${compte.solde}"></td>
+										<td th:text="${compte.client.cin}"></td>
+										<td>
+											<form method="POST" th:action="@{/compte/update}">
+												<input name="rib" th:value="${compte.rib}" type="hidden">
+												<button
+														class="btn btn-warning btn-sm btn-icon rounded-circle waves-effect waves-themed"
+														type="submit">
+												</button>
+											</form>
+										</td>
+										<td><a class="btn btn-danger btn-sm btn-icon rounded-circle waves-effect waves-themed"
+											   th:href="@{'/compte/delete/'+${compte.rib}} ">
+										</a></td>
+									</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
-				</main>
-				<!-- this overlay is activated only when mobile menu is triggered -->
-				<div class="page-content-overlay" data-action="toggle"
-					data-class="mobile-nav-on"></div>
-				<!-- END Page Content -->
-				<div th:replace="~{/layouts/shortcuts}"></div>
-
-
+				</div>
+				<!-- ============================================================== -->
+				<!-- end basic table  -->
+				<!-- ============================================================== -->
 			</div>
+
 		</div>
+		<!-- ============================================================== -->
+		<!-- footer -->
+		<!-- ============================================================== -->
+		<div th:replace="~{/layouts/footer_page}"></div>
+		<!-- ============================================================== -->
+		<!-- end footer -->
+		<!-- ============================================================== -->
 	</div>
+</div>
+<!-- ============================================================== -->
+<!-- end main wrapper -->
+<!-- ============================================================== -->
+<!-- Optional JavaScript -->
+<script src="../vendor/jquery/jquery-3.3.1.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="../vendor/slimscroll/jquery.slimscroll.js"></script>
+<script src="../vendor/multi-select/js/jquery.multi-select.js"></script>
+<script src="../libs/js/main-js.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="../vendor/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="../vendor/datatables/js/buttons.bootstrap4.min.js"></script>
+<script src="../vendor/datatables/js/data-table.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
+<script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
 
-
-
-	<!-- JavaScript Bundle with Popper -->
-	<script src="../js/bootstrap.bundle.min.js"></script>
-	<script src="../js/jquery-3.6.0.min.js"></script>
-	<script src="../js/sweetalert.min.js"></script>
-	<script src="../js/comptes.js"></script>
-	<script src="../js/vendors.bundle.js"></script>
-	<script src="../js/app.bundle.js"></script>
-	<script src="../js/datagrid/datatables/datatables.bundle.js"></script>
-	<script>
-		/* demo scripts for change table color */
-		/* change background */
-
-		$(document).ready(
-				function() {
-					$('#dt-basic-example').dataTable({
-						responsive : true
-					});
-
-					$('.js-thead-colors a').on(
-							'click',
-							function() {
-								var theadColor = $(this).attr("data-bg");
-								console.log(theadColor);
-								$('#dt-basic-example thead').removeClassPrefix(
-										'bg-').addClass(theadColor);
-							});
-
-					$('.js-tbody-colors a').on(
-							'click',
-							function() {
-								var theadColor = $(this).attr("data-bg");
-								console.log(theadColor);
-								$('#dt-basic-example').removeClassPrefix('bg-')
-										.addClass(theadColor);
-							});
-
-				});
-	</script>
 </body>
+
 </html>

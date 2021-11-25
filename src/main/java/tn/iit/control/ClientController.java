@@ -33,16 +33,10 @@ public class ClientController {
     @PostMapping("/save")
     public String save(@RequestParam(name = "cin", required = true) String cin,
                        @RequestParam(name = "nom", required = true) String nom,
-                       @RequestParam(name = "prenom", required = true) String prenom, Model model) {
+                       @RequestParam(name = "prenom", required = true) String prenom) {
 
         Client client = new Client(cin, nom, prenom);
-        Client checkclient = clientService.findById(cin);
-        if (checkclient != null) {
-            model.addAttribute("existerror", "Client Alerady exist");
-        } else {
-            clientService.save(client);
-        }
-
+        clientService.save(client);
         return "redirect:/client/all";
     }
 

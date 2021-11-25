@@ -48,14 +48,10 @@ public class CompteController {
 
 	@PostMapping("/save")
 	public String save(@RequestParam(name = "solde", required = true) float solde,
-					   @RequestParam(name = "cin", required = true) String cin, Model model) {
+					   @RequestParam(name = "cin", required = true) String cin) {
 		Client client = clientService.findById(cin);
 		Compte compte = new Compte(solde, client);
-		/*
-		 * model.addAttribute("message","Hello ThymeLeaf");
-		 */
 		compteService.save(compte);
-
 		return "redirect:/compte/all";
 	}
 

@@ -1,262 +1,171 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html lang="en">
+
 
 <head>
-<meta charset="utf-8">
-<!-- CSS only -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<title>Edit Client</title>
-<meta name="description" content="Basic">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
-<!-- Call App Mode on ios devices -->
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<!-- Remove Tap Highlight on Windows Phone IE -->
-<meta name="msapplication-tap-highlight" content="no">
-<!-- base css -->
-<link rel="stylesheet" media="screen, print"
-	href="../css/vendors.bundle.css">
-<link rel="stylesheet" media="screen, print"
-	href="../css/app.bundle.css">
-<link rel="stylesheet" media="screen, print" href="../css/fa-brands.css">
-<!-- Place favicon.ico in the root directory -->
-<link rel="apple-touch-icon" sizes="180x180"
-	href="../img/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32"
-	href="../img/favicon/favicon-32x32.png">
-<link rel="mask-icon" href="../img/favicon/safari-pinned-tab.svg"
-	color="#5bbad5">
-<link rel="stylesheet" media="screen, print"
-	href="../css/datagrid/datatables/datatables.bundle.css">
-<link rel="stylesheet" media="screen, print"
-	href="../css/formplugins/select2/select2.bundle.css">
-
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Form Validation</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+	<link href="../vendor/fonts/circular-std/style.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../vendor/fonts/fontawesome/css/fontawesome-all.css">
 </head>
-<body class="mod-bg-1 ">
-	<script src="../js/themesett.js"></script>
-	<div class="page-wrapper">
-		<div class="page-inner">
-			<div th:replace="~{/layouts/nav}"></div>
-			<div class="page-content-wrapper">
-				<div th:replace="~{/layouts/pageheader}"></div>
-				<!-- BEGIN Page Content -->
-				<!-- the #js-page-content id is needed for some plugins to initialize -->
-				<main id="js-page-content" role="main" class="page-content">
-					<ol class="breadcrumb page-breadcrumb">
-						<li class="breadcrumb-item"><a th:href="@{/}">Dashboard</a></li>
-						<li class="breadcrumb-item"><a th:href="@{/client/all}">Client</a></li>
-						<li class="breadcrumb-item active">Edit</li>
-						<li class="position-absolute pos-top pos-right d-none d-sm-block"><span
-							class="js-get-date"></span></li>
-					</ol>
 
-					<div class="row">
-						<div class="col-xl-12">
-							<div id="panel-1" class="panel">
-								<div class="panel-hdr">
-									<h2>
-										Client <span class="fw-300"><i>Form</i></span>
-									</h2>
-								</div>
-								<div class="panel-container show">
-									<form th:action="@{/client/update_data}" method="POST" th:object="${client}">
-										<div class="panel-content">
+<body>
+<!-- ============================================================== -->
+<!-- main wrapper -->
+<!-- ============================================================== -->
+<div class="dashboard-main-wrapper">
+	<!-- ============================================================== -->
+	<!-- navbar -->
+	<!-- ============================================================== -->
+	<div th:replace="~{/layouts/leftsidebar}"></div>
 
-											<label class="form-label" for="single-default"> Cin
-												: </label> <input type="text" class="form-control"
-												aria-label="Person name"th:name="cin" th:field="*{cin}" placeholder="Cin" readonly>
-											<label class="form-label" for="single-default"> Nom
-												: </label> <input type="text" class="form-control"
-												aria-label="Person name" th:name="nom" th:field="*{nom}" placeholder="Nom">
-											<label class="form-label" for="single-default"> Prenom
-												: </label> <input type="text" class="form-control"
-												aria-label="Person name" th:name="prenom" th:field="*{prenom}" placeholder="Prenom">
+	<!-- ============================================================== -->
+	<!-- end navbar -->
+	<!-- ============================================================== -->
+	<!-- ============================================================== -->
+	<!-- left sidebar -->
+	<!-- ============================================================== -->
+	<div th:replace="~{/layouts/header}"></div>
 
-
-										</div>
-										<div
-											class="panel-content border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row">
-
-											<button
-												class="btn btn-primary ml-auto waves-effect waves-themed"
-												type="submit" value="Update">Submit form</button>
-										</div>
-									</form>
-								</div>
-							</div>
+	<!-- ============================================================== -->
+	<!-- end left sidebar -->
+	<!-- ============================================================== -->
+	<!-- ============================================================== -->
+	<!-- wrapper  -->
+	<!-- ============================================================== -->
+	<div class="dashboard-wrapper">
+		<div class="container-fluid  dashboard-content">
+			<!-- ============================================================== -->
+			<!-- pageheader -->
+			<!-- ============================================================== -->
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+					<div class="page-header">
+						<h2 class="pageheader-title">Form Validations </h2>
+						<p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+						<div class="page-breadcrumb">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+									<li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Forms</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Form Validations</li>
+								</ol>
+							</nav>
 						</div>
 					</div>
-				</main>
-				<!-- this overlay is activated only when mobile menu is triggered -->
-				<div class="page-content-overlay" data-action="toggle"
-					data-class="mobile-nav-on"></div>
-				<!-- END Page Content -->
-				<div th:replace="~{/layouts/shortcuts}"></div>
-
-
+				</div>
 			</div>
+			<!-- ============================================================== -->
+			<!-- end pageheader -->
+			<!-- ============================================================== -->
+
+			<div class="row">
+				<!-- ============================================================== -->
+				<!-- validation form -->
+				<!-- ============================================================== -->
+
+				<!-- ============================================================== -->
+				<!-- end validation form -->
+				<!-- ============================================================== -->
+			</div>
+			<div class="row">
+				<!-- ============================================================== -->
+				<!-- basic form -->
+				<!-- ============================================================== -->
+
+				<!-- ============================================================== -->
+				<!-- end horizontal form -->
+				<!-- ============================================================== -->
+			</div>
+			<div class="row">
+				<!-- ============================================================== -->
+				<!-- valifation types -->
+				<!-- ============================================================== -->
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+					<div class="card">
+						<h5 class="card-header">Add Customer</h5>
+						<div class="card-body">
+							<form th:action="@{/client/update_data}" method="POST" th:object="${client}">
+								<div class="form-group row">
+									<label class="col-12 col-sm-3 col-form-label text-sm-right">CIN</label>
+									<div class="col-12 col-sm-8 col-lg-6">
+										<input type="number" th:name="cin" th:field="*{cin}" placeholder="Type your CIN" class="form-control" required>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-12 col-sm-3 col-form-label text-sm-right">First Name</label>
+									<div class="col-12 col-sm-8 col-lg-6">
+										<input type="text" th:name="nom" th:field="*{nom}"  placeholder="Put your First Name - Min 6 chars." class="form-control" required>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-12 col-sm-3 col-form-label text-sm-right">Last Name Length</label>
+									<div class="col-12 col-sm-8 col-lg-6">
+										<input type="text" th:name="prenom" th:field="*{prenom}" placeholder="Put your Last Name - Min 6 chars." class="form-control" required>
+									</div>
+								</div>
+								<div class="form-group row text-right">
+									<div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+										<button type="submit" value="add" class="btn btn-space btn-primary">Submit</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!-- ============================================================== -->
+				<!-- end valifation types -->
+				<!-- ============================================================== -->
+			</div>
+
 		</div>
+		<!-- ============================================================== -->
+		<!-- footer -->
+		<!-- ============================================================== -->
+		<div th:replace="~{/layouts/footer_page}"></div>
+
+		<!-- ============================================================== -->
+		<!-- end footer -->
+		<!-- ============================================================== -->
 	</div>
-
-
-	<!-- JavaScript Bundle with Popper -->
-	<script src="../js/bootstrap.bundle.min.js"></script>
-	<script src="../js/jquery-3.6.0.min.js"></script>
-	<script src="../js/sweetalert.min.js"></script>
-	<script src="../js/clients.js"></script>
-	<script src="../js/vendors.bundle.js"></script>
-	<script src="../js/app.bundle.js"></script>
-	<script src="../js/datagrid/datatables/datatables.bundle.js"></script>
-	<script src="../js/formplugins/select2/select2.bundle.js"></script>
-	<script>
-		$(document)
-				.ready(
-						function() {
-							$(function() {
-								$('.select2').select2();
-
-								$(".select2-placeholder-multiple").select2({
-									placeholder : "Select State"
-								});
-								$(".js-hide-search").select2({
-									minimumResultsForSearch : 1 / 0
-								});
-								$(".js-max-length").select2({
-									maximumSelectionLength : 2,
-									placeholder : "Select maximum 2 items"
-								});
-								$(".select2-placeholder").select2({
-									placeholder : "Select a state",
-									allowClear : true
-								});
-
-								$(".js-select2-icons").select2({
-									minimumResultsForSearch : 1 / 0,
-									templateResult : icon,
-									templateSelection : icon,
-									escapeMarkup : function(elm) {
-										return elm
-									}
-								});
-
-								function icon(elm) {
-									elm.element;
-									return elm.id ? "<i class='"
-											+ $(elm.element).data("icon")
-											+ " mr-2'></i>" + elm.text
-											: elm.text
-								}
-
-								$(".js-data-example-ajax")
-										.select2(
-												{
-													ajax : {
-														url : "https://api.github.com/search/repositories",
-														dataType : 'json',
-														delay : 250,
-														data : function(params) {
-															return {
-																q : params.term, // search term
-																page : params.page
-															};
-														},
-														processResults : function(
-																data, params) {
-															// parse the results into the format expected by Select2
-															// since we are using custom formatting functions we do not need to
-															// alter the remote JSON data, except to indicate that infinite
-															// scrolling can be used
-															params.page = params.page || 1;
-
-															return {
-																results : data.items,
-																pagination : {
-																	more : (params.page * 30) < data.total_count
-																}
-															};
-														},
-														cache : true
-													},
-													placeholder : 'Search for a repository',
-													escapeMarkup : function(
-															markup) {
-														return markup;
-													}, // let our custom formatter work
-													minimumInputLength : 1,
-													templateResult : formatRepo,
-													templateSelection : formatRepoSelection
-												});
-
-								function formatRepo(repo) {
-									if (repo.loading) {
-										return repo.text;
-									}
-
-									var markup = "<div class='select2-result-repository clearfix d-flex'>"
-											+ "<div class='select2-result-repository__avatar mr-2'><img src='" + repo.owner.avatar_url + "' class='width-2 height-2 mt-1 rounded' /></div>"
-											+ "<div class='select2-result-repository__meta'>"
-											+ "<div class='select2-result-repository__title fs-lg fw-500'>"
-											+ repo.full_name + "</div>";
-
-									if (repo.description) {
-										markup += "<div class='select2-result-repository__description fs-xs opacity-80 mb-1'>"
-												+ repo.description + "</div>";
-									}
-
-									markup += "<div class='select2-result-repository__statistics d-flex fs-sm'>"
-											+ "<div class='select2-result-repository__forks mr-2'><i class='fal fa-lightbulb'></i> "
-											+ repo.forks_count
-											+ " Forks</div>"
-											+ "<div class='select2-result-repository__stargazers mr-2'><i class='fal fa-star'></i> "
-											+ repo.stargazers_count
-											+ " Stars</div>"
-											+ "<div class='select2-result-repository__watchers mr-2'><i class='fal fa-eye'></i> "
-											+ repo.watchers_count
-											+ " Watchers</div>"
-											+ "</div>"
-											+ "</div></div>";
-
-									return markup;
-								}
-
-								function formatRepoSelection(repo) {
-									return repo.full_name || repo.text;
-								}
-							});
-						});
-	</script>
-
-	<script>
-		/* demo scripts for change table color */
-		/* change background */
-
-		$(document).ready(
-				function() {
-					$('#dt-basic-example').dataTable({
-						responsive : true
-					});
-
-					$('.js-thead-colors a').on(
-							'click',
-							function() {
-								var theadColor = $(this).attr("data-bg");
-								console.log(theadColor);
-								$('#dt-basic-example thead').removeClassPrefix(
-										'bg-').addClass(theadColor);
-							});
-
-					$('.js-tbody-colors a').on(
-							'click',
-							function() {
-								var theadColor = $(this).attr("data-bg");
-								console.log(theadColor);
-								$('#dt-basic-example').removeClassPrefix('bg-')
-										.addClass(theadColor);
-							});
-
-				});
-	</script>
+</div>
+<!-- ============================================================== -->
+<!-- end main wrapper -->
+<!-- ============================================================== -->
+<!-- Optional JavaScript -->
+<script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="../assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+<script src="../assets/vendor/parsley/parsley.js"></script>
+<script src="../assets/libs/js/main-js.js"></script>
+<script>
+	$('#form').parsley();
+</script>
+<script>
+	// Example starter JavaScript for disabling form submissions if there are invalid fields
+	(function() {
+		'use strict';
+		window.addEventListener('load', function() {
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			var forms = document.getElementsByClassName('needs-validation');
+			// Loop over them and prevent submission
+			var validation = Array.prototype.filter.call(forms, function(form) {
+				form.addEventListener('submit', function(event) {
+					if (form.checkValidity() === false) {
+						event.preventDefault();
+						event.stopPropagation();
+					}
+					form.classList.add('was-validated');
+				}, false);
+			});
+		}, false);
+	})();
+</script>
 </body>
+
 </html>
